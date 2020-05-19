@@ -1,0 +1,56 @@
+#!/usr/bin/ruby2.5
+class String
+def isnum
+Float(self) != nil rescue false
+end
+end
+def inf x
+x = "#{x}"
+a=false
+if x[0]=='1'
+c=1
+x=x[1..x.length]
+elsif x[0..1]=='44'
+c=44
+x=x[2..x.length]
+elsif x[0..1]=='52'
+c=52
+x=x[2..x.length]
+else
+c=1
+a=true
+end
+if x.isnum != false
+o="the number you gave me is #{x}"
+if c==1
+if a==false
+o="#{o}its from the united states which has the country code '1'"
+else
+o="#{o}its from the united states (i had to assume since you didnt read and decided not to include the country code) which has the country code '1'"
+end
+elsif c==44
+o="#{o}its from the united kingdom which has the country code '44'"
+elsif c==52
+o="#{o}its from mexico which has the area code '52'"
+else
+o="an error has occured"
+end
+end
+if x.isnum == false
+o="thats not a number!"
+end
+return o
+end
+def init
+puts "enter your number with the country code:"
+i = gets
+no=[" ","+","-","(",")"]
+no.each {|it|
+i=i.gsub(it,"")
+}
+return i
+end
+def main
+return inf init
+end
+puts main
